@@ -1,0 +1,31 @@
+name: Deploy Azure Functions
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: Publish with dotnet
+      run: dotnet publish --configuration Release --output ./publish
+
+    - name: Deploy to Azure Functions
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: red-easyauth-fn
+        slot-name: red-easy-auth-fn
+        publish-profile: ${{ secrets.EASY_AUTH_AZFUNC_PUBLISH_PROFILE }}
+        package: ./publish
