@@ -1,6 +1,34 @@
 # Project Name
 
-This project is a sample Azure Functions project that demonstrates how to display user detail and claims from being hosted in a function app that is secured by Easy Auth
+This project is a sample Azure Functions project that demonstrates how to display user detail and claims from being hosted in a function app that is secured by Easy Auth. 
+
+## Main Files
+
+### `HttpTrigger1.cs`
+
+This is the only function in the project and contains the code for an HTTP-triggered Azure Function. The function takes an HTTP request as input and returns an HTTP response with user details and claims from the Easy Auth authentication provider.
+
+The function uses the `PrincipalValue` class to deserialize the user details and claims from the `x-ms-client-principal` header in the HTTP request. It then constructs an HTTP response with the user details and claims and returns it to the client.
+
+Here's a summary of the code in `HttpTrigger1.cs`:
+
+- The `HttpTrigger1` class defines an HTTP-triggered Azure Function.
+- The `Run` method is the entry point for the function and takes an `HttpRequestData` object as input.
+- The method extracts the `x-ms-client-principal` header from the HTTP request and deserializes it into a `PrincipalValue` object.
+- The method constructs an HTTP response with the user details and claims from the `PrincipalValue` object.
+- The method returns the HTTP response to the client.
+
+### `ClientPrincipal.cs`
+
+The `ClientPrincipal.cs` file contains the `ClientPrincipal` class, which is used to deserialize the `x-ms-client-principal` header in an HTTP request into a `PrincipalValue` object.
+
+Here's a summary of the code in `ClientPrincipal.cs`:
+
+- The `ClientPrincipal` class defines a set of properties that correspond to the fields in the `x-ms-client-principal` header.
+- The `ClientPrincipal` class has a static `Deserialize` method that takes a base64-encoded string representation of the `x-ms-client-principal` header as input.
+- The `Deserialize` method decodes the base64-encoded string and deserializes it into a `PrincipalValue` object.
+- The `PrincipalValue` class defines a set of properties that correspond to the fields in the `x-ms-client-principal` header, as well as a `Claims` property that contains a dictionary of additional claims.
+- The `Deserialize` method returns a `PrincipalValue` object that contains the user details and claims from the `x-ms-client-principal` header.
 
 ## Getting Started
 
