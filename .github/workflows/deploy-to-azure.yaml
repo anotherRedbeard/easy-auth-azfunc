@@ -5,8 +5,10 @@ on:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  deployment:
     runs-on: ubuntu-latest
+    environment: 
+      name: main
 
     steps:
     - uses: actions/checkout@v2
