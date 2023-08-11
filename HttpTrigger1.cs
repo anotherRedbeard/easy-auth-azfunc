@@ -53,7 +53,7 @@ namespace easyauth.function
 
                     // Your business logic here...
 
-                    string message = $"Hello, authenticated user {userId}!\n Here are your Roles: {string.Join(",", userRoles)}";
+                    string message = $"Hello, authenticated user {userId}!\n\nHere are your Roles: {string.Join(",", userRoles)}";
 
                     // Test if the user is in a specific role (e.g., "Reader")
                     bool isReader = principal?.IsUserInRole("Reader") ?? false;
