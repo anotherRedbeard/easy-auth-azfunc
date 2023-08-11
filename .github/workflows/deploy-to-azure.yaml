@@ -24,6 +24,9 @@ jobs:
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output ./publish
 
+      # Deploy to Azure Functions
+      # If you have a linux consumption function app, you will need to make sure and remove the WEBSITE_RUN_FROM_PACKAGE app setting
+      # refer here for more details:  https://learn.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package#enable-functions-to-run-from-a-package
     - name: Deploy to Azure Functions
       uses: Azure/functions-action@v1
       with:

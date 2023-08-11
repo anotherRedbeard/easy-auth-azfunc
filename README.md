@@ -39,6 +39,19 @@ This will start the Azure Functions runtime and allow you to test the functions 
 curl -X GET -H "X-MS-CLIENT-PRINCIPAL:  <header_value>" "http://localhost:7071/api/HttpTrigger1"
 ```
 
+## GitHub Action Workflow
+
+The `.github/workflows/deploy-to-azure.yaml` file represents a quick/basic example of deploying this solution to a function hosted in Azure.  For my example, I'm deploying this to a linux consumption plan using a [Zip Deployment](https://learn.microsoft.com/en-us/azure/azure-functions/deployment-zip-push).
+
+- Here are the steps of the workflow
+  - Checkout the code
+  - Set the dotnet core version
+  - Build the dotnet project
+  - Publish the dotnet project to the `./publish` location
+  - Use the Azure/functions-action@v1 github action to deploy to Azure
+    - Since I'm deploying to a Linux consumption plan, you need to make sure and remove the WEBSITE_RUN_FROM_PACKAGE app setting. Refer to the [Run From Package Document](https://learn.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package#enable-functions-to-run-from-a-package) for more details on this.
+
+
 ## Contributing
 
 If you'd like to contribute to this project, please fork the repository and submit a pull request. We welcome contributions of all kinds, including bug fixes, feature enhancements, and documentation improvements.
