@@ -26,6 +26,6 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: red-easyauth-fn
-        slot-name: red-easy-auth-fn
+        slot-name: Production
         publish-profile: ${{ secrets.EASY_AUTH_AZFUNC_PUBLISH_PROFILE }}
         package: ./publish
