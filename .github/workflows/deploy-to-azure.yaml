@@ -28,6 +28,5 @@ jobs:
       uses: Azure/functions-action@v1
       with:
         app-name: red-easyauth-fn
-        slot-name: Production
         publish-profile: ${{ secrets.EASY_AUTH_AZFUNC_PUBLISH_PROFILE }}
         package: ./publish
